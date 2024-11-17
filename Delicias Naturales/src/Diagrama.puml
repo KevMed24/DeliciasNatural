@@ -1,0 +1,54 @@
+@startuml
+package "udla.kmedinaleon.inventario" {
+    class Producto {
+        -String idProducto
+        -String nombre
+        -double precio
+        -int cantidadDisponible
+        +Producto(String, String, double, int)
+        +getIdProducto(): String
+        +getNombre(): String
+        +getPrecio(): double
+        +getCantidadDisponible(): int
+        +setCantidadDisponible(int): void
+        +calcularEspacioOcupado(): double
+        +toString(): String
+    }
+
+    class ProductoPerecedero {
+        -String fechaCaducidad
+        +ProductoPerecedero(String, String, double, int, String)
+        +getFechaCaducidad(): String
+        +verificarCaducidad(): boolean
+        +toString(): String
+    }
+
+    class ProductoNoPerecedero {
+        -int vidaUtil
+        +ProductoNoPerecedero(String, String, double, int, int)
+        +getVidaUtil(): int
+        +toString(): String
+    }
+
+    class Inventario {
+        -List<Producto> productos
+        -double capacidadAlmacen
+        -double presupuesto
+        +Inventario(double, double)
+        +agregarProducto(Producto): void
+        +verificarEspacio(Producto): boolean
+        +mostrarProductos(): void
+    }
+
+    class Main {
+        +main(String[]): void
+    }
+
+    Producto <|-- ProductoPerecedero
+    Producto <|-- ProductoNoPerecedero
+    Inventario "1" *-- "*" Producto : contiene >
+    Main ..> Inventario : interactúa con >
+}
+
+@enduml
+

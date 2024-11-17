@@ -1,0 +1,22 @@
+@startuml
+class Producto {
+  - idProducto
+  - nombre
+  - precio
+  - cantidad
+  + calcularEsp()
+}
+
+class Inventario {
+  - productos
+  - capacidadAlmacen
+  + agregarProducto()
+  + verificarEspacio()
+}
+
+class Reabastecimiento {
+  - fecha
+  - cantidad
+  + planificar()
+}
+@enduml
